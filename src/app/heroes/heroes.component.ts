@@ -9,7 +9,7 @@ import { HEROES } from '../mock-heroes';
 })
 export class HeroesComponent implements OnInit {
 
-  heroes = HEROES;
+  heroes = HEROES;  // Warum muss diese Variable nicht initialisiert werden mit einer default variable?
   hero: Hero = {
     id: 1,
     name: 'Windfurz'
