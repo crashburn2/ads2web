@@ -9,28 +9,3 @@
 </ul>
 
 <app-hero-detail [hero]="selectedHero"></app-hero-detail>
-
-
-
-
-<h1>Testing Area</h1>
-<div><span>name: </span>{{hero.name}}</div>
-<h2>{{hero.name | uppercase}} Details</h2>
-<div>
-  <label>name:
-    <input [(ngModel)]="hero.name" placeholder="name" />
-  </label>
-</div>
-<h2>hallo</h2>
-<h1>{{name1}}</h1>
-<h1>hallo2</h1>
-
-
-<div>
-  <ul class="heroes">
-    <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
-      
-      {{hero.id}}{{hero.name}}
-    </li>
-  </ul>
-</div>
