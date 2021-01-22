@@ -1,6 +1,5 @@
-import { Component, OnInit , Input} from '@angular/core';
-import{Hero} from '../hero'
-import { HEROES } from '../mock-heroes';
+import { Component, Input, OnInit } from '@angular/core';
+import { Hero } from '../hero';
 
 @Component({
   selector: 'app-hero-detail',
@@ -8,11 +7,9 @@ import { HEROES } from '../mock-heroes';
   styleUrls: ['./hero-detail.component.scss']
 })
 export class HeroDetailComponent implements OnInit {
-  heroes = HEROES;
-  @Input() hero : Hero = this.heroes[1];
+  @Input() hero: Hero | undefined;
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

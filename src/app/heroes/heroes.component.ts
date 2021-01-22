@@ -10,24 +10,12 @@ import { MessageService } from '../message.service';
 })
 export class HeroesComponent implements OnInit {
 
-  heroes: Hero[] = [];
-  hero: Hero = {
-    id: 1,
-    name: 'Windfurz'
-  };
-  selectedHero: Hero = {
-    id: 1,
-    name: 'Windfurz'
-  };
-  name1: string = `${this.hero.name} ${this.hero.id}`;
-  //selectedHero: Hero; //Warum geht das nicht???????????????????????????
-
-  //___________________
-  // Ab Hier Funktionen
-  //___________________
+  heroes: Hero[] | undefined;
+  selectedHero: Hero | undefined;
 
   onSelect(hero: Hero): void {
-    this.messageService.add('HeroesComponent: Selected hero id=${hero.id}')
+
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
     this.selectedHero = hero
     console.log(this.selectedHero)
   }
@@ -37,12 +25,18 @@ export class HeroesComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+  getHeroes(test: boolean): void {
+    if (test) {
+      this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+    }
   }
 
   ngOnInit(): void {
-    this.getHeroes();
+    this.getHeroes(true);
+    if (!this.heroes) {
+      console.log("Fehler: heroes Empty")
+      return
+    }
   }
 
 
