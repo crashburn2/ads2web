@@ -10,7 +10,8 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-detail.component.scss']
 })
 export class HeroDetailComponent implements OnInit {
-  @Input() hero: Hero | undefined;
+  hero: Hero | undefined;
+  heroId: number | undefined;
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
@@ -18,15 +19,19 @@ export class HeroDetailComponent implements OnInit {
   ) { }
 
   getHero(): void {
-    if (!this.route.snapshot.paramMap) {
-      const id = +this.route.snapshot.paramMap.get('id');
-      this.heroService.getHero(id)
+    //const id = +this.route.snapshot.paramMap.get('id');
+    this.heroId = 11;
+    console.log("Hero Id wird eingelesen")
+    if (this.heroId) {
+      console.log("Hero ID erkannt")
+      this.heroService.getHero(this.heroId)
         .subscribe(hero => this.hero = hero);
+    } else {
+      console.log("keine Hero ID")
     }
   }
 
   ngOnInit(): void {
     this.getHero();
   }
-
 }

@@ -9,6 +9,9 @@
     </label>
   </div>
 </div>
-<div *ngIf="!hero">
-  <h2>No Hero selected</h2>
+<div *ngIf="!hero&&heroId">
+  <h2>No Hero found with id={{heroId}}</h2>
+</div>
+<div *ngIf="!hero&&!heroId">
+  <h2>No Id found</h2>
 </div>
