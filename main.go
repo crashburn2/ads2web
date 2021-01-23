@@ -14,12 +14,12 @@ func main() {
 	app := fiber.New()
 
 	app.Get("/foo", func(c *fiber.Ctx) error {
-		fmt.Print("Go1")
+		fmt.Print("Go Sendet jetzt einen String an /foo")
 		return c.SendString("Von go gesendeter String")
 	})
 
-	fmt.Println("Hello, World!")
-	fmt.Println(http.Hello("Crash"))
 
 	log.Fatal(app.Listen(":3000"))
+	fmt.Println("Listen on 3000/foo
+
 }
