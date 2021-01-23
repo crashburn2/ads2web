@@ -10,6 +10,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from '@angular/common/http';
+import { HttpComponent } from './http/http.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HttpComponent
 
   ],
   imports: [
