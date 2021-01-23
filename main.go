@@ -11,15 +11,15 @@ import (
 )
 
 func main() {
-	fiber := fiber.New()
+	app := fiber.New()
 
-	fiber.Get("/foo", func(c *fiber.Ctx) error {
+	app.Get("/foo", func(c *fiber.Ctx) error {
 		fmt.Print("Go1")
-		return c.SendString("Mach mal was")
+		return c.SendString("Von go gesendeter String")
 	})
 
 	fmt.Println("Hello, World!")
 	fmt.Println(http.Hello("Crash"))
 
-	log.Fatal(fiber.Listen(":3000"))
+	log.Fatal(app.Listen(":3000"))
 }

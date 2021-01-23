@@ -7,19 +7,22 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./http.component.scss']
 })
 export class HttpComponent implements OnInit {
+  appgo: any = "";
+  goInput: any = "";
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  async app2(): Promise<void> {
-    console.log("app2 in angu")
-    const data2 = await this.http.get("/foo2",
+  async app(): Promise<any> {
+    console.log("angu1")
+    const data = await this.http.get("/foo",  //Variable data
       {
         responseType: "text"
-      }).toPromise()
-    console.log(data2)
+
+      }).toPromise(this.appgo)
+    console.log(data)
+    this.goInput = data;
   }
 
 }
