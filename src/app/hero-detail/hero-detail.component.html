@@ -1,10 +1,18 @@
+<h2>Hero details:</h2>
 <div *ngIf="hero">
-    <h2>{{hero.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{hero.id}}</div>
-    <div><span>name:</span>{{hero.name}}</div>
-    <div>
-      <label>name:
-        <input [(ngModel)]="hero.name" placeholder="name"/>
-      </label>
-    </div>
+  <h2>{{hero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{hero.id}}</div>
+  <div><span>name:</span>{{hero.name}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="hero.name" placeholder="name" />
+    </label>
   </div>
+</div>
+<div *ngIf="!hero&&heroId">
+  <h2>No Hero found with id={{heroId}}</h2>
+</div>
+<div *ngIf="!hero&&!heroId">
+  <h2>No Id found</h2>
+</div>
+<button (click)="goBack()">go back</button>

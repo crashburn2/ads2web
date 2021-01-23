@@ -1,6 +1,8 @@
-import { Component, OnInit , Input} from '@angular/core';
-import{Hero} from '../hero'
-import { HEROES } from '../mock-heroes';
+import { Component, Input, OnInit } from '@angular/core';
+import { Hero } from '../hero';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -8,11 +10,33 @@ import { HEROES } from '../mock-heroes';
   styleUrls: ['./hero-detail.component.scss']
 })
 export class HeroDetailComponent implements OnInit {
-  heroes = HEROES;
-  @Input() hero : Hero = this.heroes[1];
-  constructor() { }
+  hero: Hero | undefined;
+  heroId: number | undefined;
+  constructor(
+    private route: ActivatedRoute,
+    private heroService: HeroService,
+    private location: Location
+  ) { }
 
-  ngOnInit(): void {
+  getHero(): void {
+    const ids = this.route.snapshot.paramMap.getAll('id');
+    const id = +ids[0];
+    //const id = +this.route.snapshot.paramMap.get('id');
+    console.log("Hero Id wird eingelesen")
+    if (id) {
+      console.log("Hero ID erkannt")
+      this.heroService.getHero(id)
+        .subscribe(hero => this.hero = hero);
+    } else {
+      console.log("keine Hero ID")
+    }
   }
 
+  ngOnInit(): void {
+    this.getHero();
+  }
+
+  goBack() : void {
+    this.location.back();
+  }
 }
