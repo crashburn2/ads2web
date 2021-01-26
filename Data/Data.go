@@ -1,16 +1,20 @@
 package data
 
 import (
-	"crypto/rand"
 	"fmt"
+	"math/rand"
 
 	"example.com/types"
 )
 
 var namen []string
 
-func main() {
+func Main() {
 	initArray()
+	//fmt.Print("\nEs folgen alle verfügbaren Namen:")
+	//fmt.Print("\n", namen)
+	//fmt.Print("\nEnde Der Liste\n")
+
 }
 
 func Hello(name string) string {
@@ -21,8 +25,8 @@ func Hello(name string) string {
 
 func GiveHero() types.Hero {
 	h := types.Hero{}
-	h.Id = 1
-	h.Name = namen[rand.Int(namen.length-0)]
+	h.Id = rand.Intn(len(namen) + 1)
+	h.Name = namen[rand.Intn(len(namen)+1)]
 	return h
 }
 

@@ -3,31 +3,34 @@ package main
 import (
 	"fmt"
 	"log"
-	"strconv"
 
 	"example.com/data"
 	"example.com/types"
 	"github.com/gofiber/fiber/v2"
 )
 
+// Anzahl an Helden
 const (
 	count = 20
 )
 
 func main() {
+	//Standard aufrufe
+	data.Main()
 
 	app := fiber.New()
-	a := make([]types.Hero, count)
-	for i := 0; i < count; i++ {
-		a[i].Id = i + 1
-		a[i].Name = ("Held" + strconv.Itoa(i))
-	}
-	a[0] = data.GiveHero()
+	// app Foo
 
 	app.Get("/foo", func(c *fiber.Ctx) error {
 		fmt.Print("Go Sendet jetzt einen String an /foo")
 		return c.SendString("Von go gesendeter String")
 	})
+
+	//app api/Heroes
+	a := make([]types.Hero, count) // Erstellt ein Array mit Helden
+	for i := 0; i < count; i++ {
+		a[i] = data.GiveHero()
+	}
 
 	app.Get("/api/heroes", func(c *fiber.Ctx) error {
 		return c.JSON(a)
