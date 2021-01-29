@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -12,30 +11,29 @@ export class HeroesComponent implements OnInit {
 
   heroes: Hero[] | undefined;
 
-  constructor(
-    private heroService: HeroService) { }
-
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+  subscribeToHeroes(): void {
+    const heroObservable = this.heroService.getHeroes();
+    heroObservable.subscribe(heroes => this.heroes = heroes)
   }
 
-  ngOnInit(): void {
-    this.getHeroes();
+  constructor(
+    private heroService: HeroService) {
+    this.subscribeToHeroes();
+  }
+
+  async getHeroes(): Promise<Hero[] | undefined> {
+    var privateHeroes: Hero[] | undefined
+
+    return new Promise(resolve => {
+      const heroObservable = this.heroService.getHeroes();
+    heroObservable.subscribe(heroes => resolve(heroes))});
+  }
+
+  async ngOnInit(): Promise<void> {
+    await this.getHeroes();
     if (!this.heroes) {
       console.log("Fehler: heroes Empty")
       return
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
 }

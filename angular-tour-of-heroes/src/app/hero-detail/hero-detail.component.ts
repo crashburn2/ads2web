@@ -19,13 +19,11 @@ export class HeroDetailComponent implements OnInit {
   ) { }
 
   getHero(): void {
-    const ids = this.route.snapshot.paramMap.getAll('id');
-    const id = +ids[0];
-    //const id = +this.route.snapshot.paramMap.get('id');
-    console.log("Hero Id wird eingelesen")
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log("Hero Id wird eingelesen",id)
     if (id) {
       console.log("Hero ID erkannt")
-      this.heroService.getHero(id)
+      this.heroService.getHero(+id)
         .subscribe(hero => this.hero = hero);
     } else {
       console.log("keine Hero ID")
