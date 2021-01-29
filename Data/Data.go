@@ -3,6 +3,7 @@ package data
 import (
 	"fmt"
 	"math/rand"
+	"time"
 
 	"example.com/types"
 )
@@ -12,11 +13,9 @@ var elements []string
 var kannFliegen []bool
 
 func Main() {
+	rand.Seed(time.Now().UnixNano()) // Always changing Number
 	initArray()
 	initElements()
-	//fmt.Print("\nEs folgen alle verfügbaren Namen:")
-	//fmt.Print("\n", namen)
-	//fmt.Print("\nEnde Der Liste\n")
 }
 
 func Hello(name string) string {
