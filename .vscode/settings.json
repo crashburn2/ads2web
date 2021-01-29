@@ -1,4 +1,0 @@
-{
-    "go.buildOnSave": "workspace",
-    "go.autocompleteUnimportedPackages": true
-}

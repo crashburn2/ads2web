@@ -9,6 +9,7 @@ import (
 
 var namen []string
 var elements []string
+var kannFliegen []bool
 
 func Main() {
 	initArray()
@@ -29,6 +30,8 @@ func GiveHero() types.Hero {
 	h.Id = rand.Intn(len(namen) + 1)
 	h.Name = namen[rand.Intn(len(namen)+1)]
 	h.Elements = elements[rand.Intn(len(elements))]
+	h.Magie = rand.Intn(101)
+	h.Fliegen = rand.Intn(2) != 0
 	return h
 }
 
