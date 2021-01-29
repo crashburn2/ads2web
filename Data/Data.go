@@ -8,13 +8,14 @@ import (
 )
 
 var namen []string
+var elements []string
 
 func Main() {
 	initArray()
+	initElements()
 	//fmt.Print("\nEs folgen alle verfügbaren Namen:")
 	//fmt.Print("\n", namen)
 	//fmt.Print("\nEnde Der Liste\n")
-
 }
 
 func Hello(name string) string {
@@ -27,7 +28,17 @@ func GiveHero() types.Hero {
 	h := types.Hero{}
 	h.Id = rand.Intn(len(namen) + 1)
 	h.Name = namen[rand.Intn(len(namen)+1)]
+	h.Elements = elements[rand.Intn(len(elements))]
 	return h
+}
+
+func initElements() {
+	elements = append(elements, "Feuer")
+	elements = append(elements, "Wasser")
+	elements = append(elements, "Luft")
+	elements = append(elements, "Erde")
+	elements = append(elements, "Dunkel")
+	elements = append(elements, "Licht")
 }
 
 func initArray() {
