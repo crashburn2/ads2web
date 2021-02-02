@@ -21,8 +21,6 @@ export class HeroService {
     this.messageService.add(`HeroService: ${message}`)
   }
 
-
-
   ngOnInit(): void {
     this.getHeroes().subscribe(heroes => this.heroes = heroes);
     console.log("Init Hero Service heroes Array: ", this.heroes)
@@ -36,8 +34,6 @@ export class HeroService {
         catchError(this.handleError<Hero[]>('getHeroes', []))
       );
   }
-
-
 
   getHero(id: number | undefined): Observable<Hero | undefined> {
     this.getHeroes().subscribe(heroes => this.heroes = heroes);
