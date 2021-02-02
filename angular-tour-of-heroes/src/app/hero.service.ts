@@ -23,19 +23,22 @@ export class HeroService {
 
   ngOnInit(): void {
     this.getHeroes().subscribe(heroes => this.heroes = heroes);
-    console.log("Init Hero Service heroes Array: ", this.heroes)
+    console.log("Init Hero Service heroes Array: ", this.heroes);
+    this.messageService.add("Init Hero Service heroes Array");
   }
 
   /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(_ => console.log('fetched heroes')),
         catchError(this.handleError<Hero[]>('getHeroes', []))
       );
   }
 
   getHero(id: number | undefined): Observable<Hero | undefined> {
+    //const url = `${this.heroesUrl}/${id}`;
+    const url = `/detail/${id}`
     this.getHeroes().subscribe(heroes => this.heroes = heroes);
 
     // TODO: send the message _after_ fetching the hero
@@ -49,6 +52,12 @@ export class HeroService {
     console.log(pickedHero)
     console.log(this.heroes)
     return of(this.heroes.find(hero => hero.id === id));
+    
+    return this.http.get<Hero>(url).pipe(
+      tap(_ => this.log(`fetched hero id =${id}`)),
+      catchError(this.handleError<Hero>(`getHero id=${id}`))
+      );
+
   }
   /**
  * Handle Http operation that failed.
